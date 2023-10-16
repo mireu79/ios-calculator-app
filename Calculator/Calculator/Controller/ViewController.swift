@@ -20,6 +20,10 @@ class ViewController: UIViewController {
     }
 
     
+    @IBAction func clearButton(_ sender: Any) {
+        operandLabel.text = "0"
+    }
+    
     @IBAction func resetButton(_ sender: Any) {
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
