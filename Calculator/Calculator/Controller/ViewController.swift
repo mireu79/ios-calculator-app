@@ -41,8 +41,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func resetButton(_ sender: Any) {
+        initialView()
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
+    
+    @IBAction func minusPlusButton(_ sender: UIButton) {
+        guard var currentInput = operandLabel.text else { return }
+        
+        if currentInput.contains("-") {
+            operandLabel.text = currentInput.replacingOccurrences(of: "-", with: "")
+        } else {
+            operandLabel.text = "-" + currentInput
+        }
+    }
+    
     
     
     func initialView() {
