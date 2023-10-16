@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var operandLabel: UILabel!
     @IBOutlet weak var operatorLabel: UILabel!
     
+    var inputString: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialView()
@@ -30,8 +32,8 @@ class ViewController: UIViewController {
         guard let operatorSign = sender.titleLabel?.text else { return }
         guard let currentText = operandLabel.text else { return }
         
-        guard currentText != "0" else { return }
-        guard operandLabel.text?.isEmpty == false else { return }
+        guard currentText != "0", operandLabel.text?.isEmpty == false else { return }
+        operatorLabel.text = operatorSign
     }
     
     @IBAction func clearButton(_ sender: Any) {
@@ -41,6 +43,7 @@ class ViewController: UIViewController {
     @IBAction func resetButton(_ sender: Any) {
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
+    
     
     func initialView() {
         operandLabel.text = "0"
