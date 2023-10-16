@@ -22,13 +22,17 @@ class ViewController: UIViewController {
         guard let inputNumber = sender.titleLabel?.text  else { return }
         guard let currentOperands = operandLabel.text else { return }
         
-        if inputNumber == "0" {
-            operandLabel.text = currentOperands
-        } else {
-            operandLabel.text = currentOperands + inputNumber
-        }
+        guard inputNumber == "0" else { return operandLabel.text = currentOperands + inputNumber } 
+        operandLabel.text = currentOperands
     }
     
+    @IBAction func operatorsButton(_ sender: UIButton) {
+        guard let operatorSign = sender.titleLabel?.text else { return }
+        guard let currentText = operandLabel.text else { return }
+        
+        guard currentText != "0" else { return }
+        guard operandLabel.text?.isEmpty == false else { return }
+    }
     
     @IBAction func clearButton(_ sender: Any) {
         operandLabel.text = "0"
