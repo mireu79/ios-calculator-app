@@ -15,10 +15,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        operandLabel.text = "0"
-        operatorLabel.text = ""
+        initialView()
     }
 
+    @IBAction func operandsButton(_ sender: UIButton) {
+        guard let inputNumber = sender.titleLabel?.text  else { return }
+        guard let currentOperands = operandLabel.text else { return }
+        
+        if inputNumber == "0" {
+            operandLabel.text = currentOperands
+        } else {
+            operandLabel.text = currentOperands + inputNumber
+        }
+    }
+    
     
     @IBAction func clearButton(_ sender: Any) {
         operandLabel.text = "0"
@@ -26,6 +36,11 @@ class ViewController: UIViewController {
     
     @IBAction func resetButton(_ sender: Any) {
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
+    }
+    
+    func initialView() {
+        operandLabel.text = "0"
+        operatorLabel.text = ""
     }
 }
 
