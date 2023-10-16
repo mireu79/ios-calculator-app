@@ -85,6 +85,9 @@
                                                 <state key="normal" title="AC">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fOI-CW-6iA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLD-dY-LOA">
                                                 <rect key="frame" x="97.5" y="0.0" width="89.5" height="89.5"/>
@@ -307,6 +310,7 @@
                         <outlet property="operandLabel" destination="Lwz-OF-XHD" id="05N-LU-w2i"/>
                         <outlet property="operatorLabel" destination="HPC-iy-qdm" id="3Ix-O2-Htv"/>
                         <outlet property="scrollView" destination="BOT-7g-vxv" id="5xM-UF-cVB"/>
+                        <outlet property="stackView" destination="DC3-Ia-6L7" id="E2S-7v-9qP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
