@@ -24,8 +24,17 @@ class ViewController: UIViewController {
         guard let inputNumber = sender.titleLabel?.text  else { return }
         guard let currentOperands = operandLabel.text else { return }
         
-        guard inputNumber == "0" else { return operandLabel.text = currentOperands + inputNumber } 
-        operandLabel.text = currentOperands
+        if currentOperands == "0" {
+            operandLabel.text = inputNumber
+        } else {
+            operandLabel.text = currentOperands + inputNumber
+        }
+        
+        if inputNumber == "00" {
+            if currentOperands == "0" {
+                operandLabel.text = "0"
+            }
+        }
     }
     
     @IBAction func operatorsButton(_ sender: UIButton) {
@@ -60,6 +69,17 @@ class ViewController: UIViewController {
         guard let currentOperands = operandLabel.text else { return }
         
         operandLabel.text = currentOperands + input
+    }
+    
+    @IBAction func resultButton(_ sender: UIButton) {
+        guard operandLabel.text != "0" else { return }
+        guard operandLabel.text?.isEmpty == false else { return }
+        
+        var formula = ExpressionParser.parse(from: inputString)
+        let result = formula.result()
+        
+        initialView()
+        print(result)
     }
     
     
