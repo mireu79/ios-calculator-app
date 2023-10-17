@@ -46,13 +46,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func minusPlusButton(_ sender: UIButton) {
-        guard var currentInput = operandLabel.text else { return }
+        guard let currentInput = operandLabel.text else { return }
         
         if currentInput.contains("-") {
             operandLabel.text = currentInput.replacingOccurrences(of: "-", with: "")
         } else {
             operandLabel.text = "-" + currentInput
         }
+    }
+    
+    @IBAction func dotButton(_ sender: UIButton) {
+        guard let input = sender.titleLabel?.text else { return }
+        guard let currentOperands = operandLabel.text else { return }
+        
+        operandLabel.text = currentOperands + input
     }
     
     
