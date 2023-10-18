@@ -78,6 +78,7 @@ class ViewController: UIViewController {
         var formula = ExpressionParser.parse(from: inputString)
         let result = formula.result()
         
+        expressionStackView()
         initialView()
     }
     
@@ -91,6 +92,34 @@ class ViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 20
         return numberFormatter.string(from: NSNumber(value: Double(number) ?? 0)) ?? ""
+    }
+    
+    func makeStackView(sub: [UIView]) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        
+        for view in sub {
+            stackView.addArrangedSubview(view)
+        }
+        
+        return stackView
+    }
+    
+    func makeLabel(text: String?) -> UILabel {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = text
+        return label
+    }
+    
+    func expressionStackView() {
+        let oprendLabel = makeLabel(text: operandLabel.text)
+        let operatorLabel = makeLabel(text: operatorLabel.text)
+        let appearStackView = makeStackView(sub: [operatorLabel, oprendLabel])
+        
+        stackView.addArrangedSubview(appearStackView)
     }
 }
 

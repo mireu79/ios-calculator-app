@@ -367,7 +367,7 @@
                         <outlet property="operandLabel" destination="Lwz-OF-XHD" id="05N-LU-w2i"/>
                         <outlet property="operatorLabel" destination="HPC-iy-qdm" id="3Ix-O2-Htv"/>
                         <outlet property="scrollView" destination="BOT-7g-vxv" id="5xM-UF-cVB"/>
-                        <outlet property="stackView" destination="DC3-Ia-6L7" id="E2S-7v-9qP"/>
+                        <outlet property="stackView" destination="XRe-QE-UJf" id="XLh-tc-Qku"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
