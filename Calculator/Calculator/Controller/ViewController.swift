@@ -45,11 +45,11 @@ class ViewController: UIViewController {
         operatorLabel.text = operatorSign
     }
     
-    @IBAction func clearButton(_ sender: Any) {
+    @IBAction func clearButton(_ sender: UIButton) {
         operandLabel.text = "0"
     }
     
-    @IBAction func resetButton(_ sender: Any) {
+    @IBAction func resetButton(_ sender: UIButton) {
         initialView()
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
@@ -79,14 +79,18 @@ class ViewController: UIViewController {
         let result = formula.result()
         
         initialView()
-        print(result)
     }
-    
-    
     
     func initialView() {
         operandLabel.text = "0"
         operatorLabel.text = ""
+    }
+    
+    func formatter(_ number: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 20
+        return numberFormatter.string(from: NSNumber(value: Double(number) ?? 0)) ?? ""
     }
 }
 
