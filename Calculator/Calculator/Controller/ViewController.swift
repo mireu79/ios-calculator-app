@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialView()
+        stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
 
     @IBAction func operandsButton(_ sender: UIButton) {
