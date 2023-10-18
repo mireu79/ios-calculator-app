@@ -44,6 +44,8 @@ class ViewController: UIViewController {
         
         guard currentText != "0", operandLabel.text?.isEmpty == false else { return }
         operatorLabel.text = operatorSign
+        expressionStackView()
+        operandLabel.text = "0"
     }
     
     @IBAction func clearButton(_ sender: UIButton) {
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func minusPlusButton(_ sender: UIButton) {
-        guard let currentInput = operandLabel.text else { return }
+        guard let currentInput = operandLabel.text, operandLabel.text != "0" else { return }
         
         if currentInput.contains("-") {
             operandLabel.text = currentInput.replacingOccurrences(of: "-", with: "")
