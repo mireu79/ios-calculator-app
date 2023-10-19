@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var operandLabel: UILabel!
     @IBOutlet weak var operatorLabel: UILabel!
     
-    var inputString: String = ""
+    var input: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBAction func operandsButton(_ sender: UIButton) {
         guard let inputNumber = sender.titleLabel?.text  else { return }
         guard let currentOperands = operandLabel.text else { return }
+        input.append(inputNumber)
         
         if currentOperands == "0" {
             operandLabel.text = inputNumber
@@ -41,19 +42,27 @@ class ViewController: UIViewController {
     @IBAction func operatorsButton(_ sender: UIButton) {
         guard let operatorSign = sender.titleLabel?.text else { return }
         guard let currentText = operandLabel.text else { return }
+        input.append(operatorSign)
         
         guard currentText != "0", operandLabel.text?.isEmpty == false else { return }
-        operatorLabel.text = operatorSign
         expressionStackView()
+        operatorLabel.text = operatorSign
         operandLabel.text = "0"
     }
     
     @IBAction func clearButton(_ sender: UIButton) {
-        operandLabel.text = "0"
+        if operandLabel.text?.isEmpty == false {
+            operandLabel.text?.removeLast()
+        }
+        
+        if input.isEmpty == false {
+            input.removeLast()
+        }
     }
     
     @IBAction func resetButton(_ sender: UIButton) {
         initialView()
+        input.removeAll()
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
     }
     
@@ -72,17 +81,19 @@ class ViewController: UIViewController {
         guard let currentOperands = operandLabel.text else { return }
         
         operandLabel.text = currentOperands + input
+        self.input.append(input)
     }
     
     @IBAction func resultButton(_ sender: UIButton) {
         guard operandLabel.text != "0" else { return }
         guard operandLabel.text?.isEmpty == false else { return }
         
-        var formula = ExpressionParser.parse(from: inputString)
+        var formula = ExpressionParser.parse(from: input)
         let result = formula.result()
         
         expressionStackView()
-        initialView()
+        operandLabel.text = String(result)
+        operatorLabel.text = ""
     }
     
     func initialView() {
