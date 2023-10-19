@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func operandsButton(_ sender: UIButton) {
-        guard let inputNumber = sender.titleLabel?.text  else { return }
+        guard let inputNumber = sender.titleLabel?.text else { return }
         guard let currentOperands = operandLabel.text else { return }
         input.append(inputNumber)
         
@@ -73,6 +73,7 @@ class ViewController: UIViewController {
             operandLabel.text = currentInput.replacingOccurrences(of: "-", with: "")
         } else {
             operandLabel.text = "-" + currentInput
+            input.insert("-", at: input.startIndex)
         }
     }
     
