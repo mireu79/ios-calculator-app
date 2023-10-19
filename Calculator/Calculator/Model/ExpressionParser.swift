@@ -16,10 +16,11 @@ enum ExpressionParser {
         components.forEach { component in
             if let oprand = Double(component) {
                 operands.enqueue(oprand)
-            } else if let `oprator` = Operator(rawValue: Character(component)) {
-                operators.enqueue(`oprator`)
+            } 
+            
+            input.compactMap { Operator(rawValue: $0) }
+                 .forEach { operators.enqueue($0) }
             }
-        }
         
         return Formula(operands: operands, operators: operators)
     }
